@@ -6,35 +6,61 @@
 ## 項目 [Contents]
 
 1. [Loading SWI-Prolog](#ID_1)
+	1. おすすめSWISH (#ID_1-1)
 
-2. [Getting started quickly] (#ID_2)
-	1.1 [はじめの一歩] (#ID_2-1)
-	1.2 [*.plファイルの読み込み] (#ID_2-2)
-	1.3 [コンソールでルールの作成] (#ID_2-3)
-	1.4 [クエリ実行] (#ID_1-4)
-	1.5 [候補] (#ID_1-5)
+2. [はじめの一歩] (#ID_2)
+	1. 推論 (#ID_2-1)
 
+3. [コンソール操作] (#ID_3)
 
-100. [Error]
+4. [ファイル操作] (#ID_4)
 
+5. [リスト] (#ID_5)
 
-<a id="ID_0"></a>
+5. [数式] (#ID_6)
 
-## Loading SWI-Prolog 
+6. [Error] (#ID_7)
 
-まずは、ダウンロード。 ```https://www.swi-prolog.org/download/stable```
-
-<br>
 
 <a id="ID_1"></a>
 
-## Getting started quickly
+## 1. Loading SWI-Prolog 
+
+まずは、ダウンロード。 ```https://www.swi-prolog.org/download/stable``` <br>
 
 <a id="ID_1-1"></a>
 
-## はじめの一歩
+### 1.1 おすすめSWISH
 
-### 推論
+個人的に使いやすかった。(フクロウ君が可愛い...)　---> ```https://swish.swi-prolog.org/example/examples.swinb``` <br>
+より詳しくは ---> ```https://qiita.com/rissy/items/c3e6edb368e325a65f16``` <br>
+
+- おすすめポイント① ---> jupiter notebookみたいにnotebook方式で出来る
+
+![swish_notebook]
+
+
+クリックで出来るのでわかりやすい
+![oko]
+![next]
+![stop]
+
+
+- おすすめポイント② ---> リアルタイムで修正可能(後に追加予定...)
+
+![realtime_swish]
+
+- おすすめポイント③ ---> ダウンロードとか印刷直接できるとか! そんなんじゃなくってもっといっぱい便利機能あるはず()
+
+<br>
+
+<a id="ID_2"></a>
+
+## 2. はじめの一歩
+
+<a id="ID_2-1"></a>
+
+### 2.1 推論
 
 Prologは述語論理「AはBである」に基づき作成される。<br>
 例えば、事実「山本は人間である」と規則「Aが人間であるならば、Aはいずれ死ぬ」から、「山本はいずれ死ぬ」が推論できる。<br>
@@ -82,7 +108,7 @@ A = yamamoto.
 
 ```
 
-### 単一化
+### 2.2 単一化
 
 - 変数に代入する操作。真理値ではないことに注意
 	- ex) P(X,b) = P(X,Y) ---> X=a, Y=b ---> P(a,b)
@@ -90,14 +116,14 @@ A = yamamoto.
 	- ex) P(X,f(X,b)) = P(a,Y) ---> X=a,Y=f(a,b) ---> P(a,f(a,b))
 
 
-### 使用可能linuxのコマンド例
+### 2.3 使用可能linuxのコマンド例
 
 - pwd
 - ls
 - make(更新)
 
 
-### Prologの基本の基本
+### 2.4 Prologの基本の基本
 
 - 行の終末には ``` . ``` ピリオドを忘れない。
 
@@ -114,7 +140,7 @@ A = yamamoto.
 
 - デバッグ ```trace``` デバッグ解除 ```notrace```
 
-### キーボード入力
+### 2.5 キーボード入力
 
 ```prolog
 ?- read(X).
@@ -123,7 +149,7 @@ X = test.
 ```
 
 
-### *.plファイルの読み込み
+### 2.6 *.plファイルの読み込み
 
 - 一番左にある```File```項目の```Consult```を選択。*.plファイルが読み込まれると、緑色(default)のコンパイルメッセージが出力される。
 
@@ -137,9 +163,8 @@ X = test.
 
 ![loading_pl]
 
-<a id="ID_1-2"></a>
 
-### コンソールでルールの作成
+### 2.7 コンソールでルールの作成
 
 「ルール」helloと入力したら、Hello worldを出力。
 
@@ -153,10 +178,12 @@ Hello world
 true.
 ```
 
-### 連語
+### 2.8 連語
 
-- 連語は、```,```
-- ex) Q,Rがともに真ならばPは真である ---> P(A,B) :- Q(A),R(B).
+- 「かつ」は、```,``` で「または」は、```;````
+	- ex) Q,Rがともに真ならばPは真である ---> P(A,B) :- Q(A),R(B).
+	- ex) Aかつ(BまたはC)ならばD ---> D :- A,(B;C).
+	- ex) (AまたはB)ならばC ---> C :- A;B.
 
 
 - ```rengo.pl```は、以下の条件に基づく。
@@ -199,7 +226,7 @@ martal(A) :- human(A).
 martal(A) :- dog(A).
 ```
 
-### 否定
+### 2.9 否定
 
 - ```rengo.pl```は、以下の条件に基づく。
 	- (事実) 人間の山本と犬のポチ・ハチ・ウメキチがいる
@@ -233,10 +260,10 @@ mortal(A) :- animal(A), not(deceased(A)).
 
 ***
 
-<a id="ID_1-3"></a>
+<a id="ID_3"></a>
 
 
-## コンソール操作
+## 3. コンソール操作
 
 - ファイルではなく直接コンソールで試すときは、```[user].```モジュールを定義する。
 
@@ -313,10 +340,7 @@ X = pizza ;
 X = dahl .
 ```
 
-
-<a id="ID_1-4"></a>
-
-### 候補
+### 3.1 候補
 
 ``` prolog
 ?- listing(mild).
@@ -329,33 +353,33 @@ true.
 
 ***
 
-<a id="ID_1-4"></a>
+<a id="ID_4"></a>
 
-## ファイル操作
+## 4. ファイル操作
 
-### ファイル出力
+### 4.1 ファイル出力
 
-### ファイルの書き込み
+### 4.2 ファイルの書き込み
 
-### 作業ディレクトリ(出来なかった)
+### 4.3 作業ディレクトリ(出来なかった)
 
 - ``` working_directory(A).```
 
-### ディレクトリ変更(出来なかった)
+### 4.4 ディレクトリ変更(出来なかった)
 
 - ``` working_directory((A,'c:/Users/test').```
 
-### ソースファイルの分割
+### 4.5 ソースファイルの分割
 
 - ``` :- multifile(test1/4).```
 - 最後に読み込まれたファイルの定義のみが有効にならないようにする(定義の上書き保存を防ぐ)
 
-### ファイルへの出力
+### 4.6 ファイルへの出力
 
 - ```tell("test.txt"). true.```
 
 
-### 別 *plファイルの読み込み
+### 4.7 別 *plファイルの読み込み
 
 - ```include```で読み込む
 
@@ -384,26 +408,117 @@ wa(N1,N2,Ans) :- var(Ans), Ans is N1 * N2.
 
 ***
 
-<a id="ID_1-4"></a>
+<a id="ID_5"></a>
 
-## リスト
+## 5. リスト
 
 - 複数の要素を書き並べるための可変長のデータ構造
-- ex) yamamoto, mizobuchi, sasakiを含むリスト ---> [yamamoto,mizobuhi,sasaki] (pythonと一緒。)
-- ex) 二重リストもできる ---> [yamamoto,mizobuchi,[kaoru,tomoya],sasaki]
-- ex) 空リスト ---> []
-- ex) リストの連結構造？？ ---> [yamamoto|mizobuchi] = [kaoru,tomoya,yuki]. yamamoto = kaoru, mizobuchi = [tomoya,yuki]
+	- ex) yamamoto, mizobuchi, sasakiを含むリスト ---> [yamamoto,mizobuhi,sasaki] (pythonと一緒。)
+	- ex) 二重リストもできる ---> [yamamoto,mizobuchi,[kaoru,tomoya],sasaki]
+	- ex) 空リスト ---> []
+	- ex) リストの連結構造？？ ---> [yamamoto|mizobuchi] = [kaoru,tomoya,yuki]. yamamoto = kaoru, mizobuchi = [tomoya,yuki]
+
+以下、listの定義。
+
+```prolog:list.pl
+% 空リスト
+list([]).
+% Lがリストの時Lの先頭に任意の要素を加えたものはリストである
+list([_|L]) :- list(L).
+```
 
 
-### sort
+### 5.1 リストの単一化
+
+- [X,Y]と[a,b] ---> X=a,Y=b
+
+- [X|Y]と[a,b,c] ---> X=a,Y=[b,c]
+	- [a|X] ---> 先頭の要素がaで残りがXであるようなリスト
+	- [a,b|X] ---> 先頭からa,bと並び、残りがXであるようなリスト
+	- ※注意 [a|b,Y] ---> パイプの右に2つ以上の要素を並べることはできない
+	- ※注意 [a|X] ---> aは要素でXはリスト
+
+- [a,b|X]と[a,b] ---> X=[],[a,b]
+
+
+### 5.2 append
+```append(List1,List2,List1 and List2)```
+
+- 連結
+	- ex) append([1,2,3],[4,5,6],X). ---> X = [1,2,3,4,5,6]
+- 末尾取得
+	- ex) append([1,2,3],X,[1,2,3,4,5]). ---> X = [4,5]
+- 前取得
+	- ex) append(X,[3,4,5],[1,2,3,4,5]) ---> X = [1,2]
+
+
+
+以下、appendがよくわからなかったので、appendを遊び倒したサイト(http://basicwerk.com/blog/archives/1637)を遊び倒した。
+
+
+```prolog:append3.pl
+
+?- append(X,Y,[a,b,c])
+
+X = [],
+Y = [a,b,c];
+
+X = [a],
+Y = [b,c];
+
+X = [a,b],
+Y = [c];
+
+X = [a,b,c],
+Y = [].
+false.
+
+
+% --- 以下あまり理解できていない
+
+
+% jがアトムなのでくっつかない
+?- append(j,[m,t],L).
+false.
+
+% 正しい動作
+?- append([j],[m,t],L).
+L=[j,m,t].
+
+
+% --- 以下CARとCDRの例 ---
+
+?- append(X,Y,[8,9|12]).
+X=[],
+Y=[8,9,12];
+X=[8],
+Y=[9,12].
+
+?- append([X],[Y],[8,9]).
+X=8,
+Y=9.
+
+?- append(X,[Y],[8,9,12]).
+X=[8,9],
+Y=12;
+false.
+
+?- append([X],Y,[8,9,12]).
+X=8,
+Y=[9,12].
+
+```
+
+
+### 5.3 sort
 - リストの要素を整列
 
 
 ***
 
-<a id="ID_1-4"></a>
+<a id="ID_6"></a>
 
-## 数式
+## 6. 数式
 
 - 数式は```is```を使う
 - is(変数,計算式) ---> A is 1+2. × 3 is A+2
@@ -411,15 +526,18 @@ wa(N1,N2,Ans) :- var(Ans), Ans is N1 * N2.
 ![math_is]
 
 
-### 変数
+### 6.1 変数
+
 - 単一化に用いる ---> 英大文字で始まる記号列 A or アンダーバーで始まる記号列 _variable
 
 
-### 自作演算子(よくわかってない)
+### 6.2 自作演算子(よくわかってない)
+
 - ```op(結合の強さ,結合の方向,演算子のシンボル)```で、ユーザー独自に演算子を定義できる。
 	- ex) op(500,yfx,plus). ?- A = 1 plus 2. ---> A = 1 plus 2.
 
-### 比較演算子
+### 6.3 比較演算子
+
 - 等しい ---> ==
 - 等しい数値 ---> =:=
 	- ex) 2 =:= 1+1. true.
@@ -431,9 +549,12 @@ wa(N1,N2,Ans) :- var(Ans), Ans is N1 * N2.
 - 不等号 ---> <,>,=<,>=
 
 
+***
+
+<a id="ID_7"></a>
 
 
-### [Error]
+## [Error]
 
 Syntax error: Unexpected end of file
 
