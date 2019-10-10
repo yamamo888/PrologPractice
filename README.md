@@ -1,25 +1,25 @@
 # Prolog言語の練習
-- 公式のチュートリアルを若干なぞったり ---> https://www.swi-prolog.org/pldoc/man?section=quickstart
-- 一番お世話になりました。本当に本当に本当にありがとうございます。 ---> http://www.k-techlabo.org/www_prolog/prolog_main.pdf
+- 公式のチュートリアルを若干なぞったり ---> [公式](https://www.swi-prolog.org/pldoc/man?section=quickstart)
+- 一番お世話になりました。本当に本当に本当にありがとうございます。 ---> [Prolog神pdf](http://www.k-techlabo.org/www_prolog/prolog_main.pdf)
 
 
 ## 項目 [Contents]
 
 1. [Loading SWI-Prolog](#ID_1)
-	1. おすすめSWISH (#ID_1-1)
+	1. おすすめSWISH(#ID_1-1)
 
-2. [はじめの一歩] (#ID_2)
-	1. 推論 (#ID_2-1)
+2. [はじめの一歩](#ID_2)
+	1. 推論(#ID_2-1)
 
-3. [コンソール操作] (#ID_3)
+3. [コンソール操作](#ID_3)
 
-4. [ファイル操作] (#ID_4)
+4. [ファイル操作](#ID_4)
 
-5. [リスト] (#ID_5)
+5. [リスト](#ID_5)
 
-5. [数式] (#ID_6)
+5. [数式](#ID_6)
 
-6. [Error] (#ID_7)
+6. [Error](#ID_7)
 
 
 <a id="ID_1"></a>
