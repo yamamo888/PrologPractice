@@ -1,23 +1,23 @@
-# Prolog����̗��K
-- �����̃`���[�g���A�����኱�Ȃ������� ---> [����](https://www.swi-prolog.org/pldoc/man?section=quickstart)
-- ��Ԃ����b�ɂȂ�܂����B�{���ɖ{���ɖ{���ɂ��肪�Ƃ��������܂��B ---> [Prolog�_pdf](http://www.k-techlabo.org/www_prolog/prolog_main.pdf)
+# Prolog言語の練習
+- 公式のチュートリアルを若干なぞったり ---> [公式](https://www.swi-prolog.org/pldoc/man?section=quickstart)
+- 一番お世話になりました。本当に本当に本当にありがとうございます。 ---> [Prolog神pdf](http://www.k-techlabo.org/www_prolog/prolog_main.pdf)
 
 
-## ���� [Contents]
+## 項目 [Contents]
 
 1. [Loading SWI-Prolog](#ID_1)
-	1. ��������SWISH(#ID_1-1)
+	1. おすすめSWISH(#ID_1-1)
 
-2. [�͂��߂̈��](#ID_2)
-	1. ���_(#ID_2-1)
+2. [はじめの一歩](#ID_2)
+	1. 推論(#ID_2-1)
 
-3. [�R���\�[������](#ID_3)
+3. [コンソール操作](#ID_3)
 
-4. [�t�@�C������](#ID_4)
+4. [ファイル操作](#ID_4)
 
-5. [���X�g](#ID_5)
+5. [リスト](#ID_5)
 
-5. [����](#ID_6)
+5. [数式](#ID_6)
 
 6. [Error](#ID_7)
 
@@ -26,70 +26,70 @@
 
 ## 1. Loading SWI-Prolog 
 
-�܂��́A�_�E�����[�h�B ```https://www.swi-prolog.org/download/stable``` <br>
+まずは、ダウンロード。 ```https://www.swi-prolog.org/download/stable``` <br>
 
 <a id="ID_1-1"></a>
 
-### 1.1 ��������SWISH
+### 1.1 おすすめSWISH
 
-�l�I�Ɏg���₷�������B(�t�N���E�N������...)�@---> ```https://swish.swi-prolog.org/example/examples.swinb``` <br>
-���ڂ����� ---> ```https://qiita.com/rissy/items/c3e6edb368e325a65f16``` <br>
+個人的に使いやすかった。(フクロウ君が可愛い...)　---> ```https://swish.swi-prolog.org/example/examples.swinb``` <br>
+より詳しくは ---> ```https://qiita.com/rissy/items/c3e6edb368e325a65f16``` <br>
 
-- �������߃|�C���g�@ ---> jupiter notebook�݂�����notebook�����ŏo����
+- おすすめポイント① ---> jupiter notebookみたいにnotebook方式で出来る
 
 ![swish_notebook]
 
 
-�N���b�N�ŏo����̂ł킩��₷��
+クリックで出来るのでわかりやすい
 ![oko]
 ![next]
 ![stop]
 
 
-- �������߃|�C���g�A ---> ���A���^�C���ŏC���\(��ɒǉ��\��...)
+- おすすめポイント② ---> リアルタイムで修正可能(後に追加予定...)
 
 ![realtime_swish]
 
-- �������߃|�C���g�B ---> �_�E�����[�h�Ƃ�������ڂł���Ƃ�! ����Ȃ񂶂�Ȃ����Ă����Ƃ����ς��֗��@�\����͂�()
+- おすすめポイント③ ---> ダウンロードとか印刷直接できるとか! そんなんじゃなくってもっといっぱい便利機能あるはず()
 
 <br>
 
 <a id="ID_2"></a>
 
-## 2. �͂��߂̈��
+## 2. はじめの一歩
 
 <a id="ID_2-1"></a>
 
-### 2.1 ���_
+### 2.1 推論
 
-Prolog�͏q��_���uA��B�ł���v�Ɋ�Â��쐬�����B<br>
-�Ⴆ�΁A�����u�R�{�͐l�Ԃł���v�ƋK���uA���l�Ԃł���Ȃ�΁AA�͂����ꎀ�ʁv����A�u�R�{�͂����ꎀ�ʁv�����_�ł���B<br>
+Prologは述語論理「AはBである」に基づき作成される。<br>
+例えば、事実「山本は人間である」と規則「Aが人間であるならば、Aはいずれ死ぬ」から、「山本はいずれ死ぬ」が推論できる。<br>
 
-�ȉ��́AProlog�Əq��_���Ƃ̑Ή��B
+以下は、Prologと述語論理との対応。
 
-- ����
-	- �q��(�Ώ�) 
-	- ex) ```human(yamamoto)```�́Ayamamoto��human�ł���Ƃ�������
+- 事実
+	- 述語(対象) 
+	- ex) ```human(yamamoto)```は、yamamotoはhumanであるという事実
 
-- �K��
-	- �A�� :- ���� 
-	- ex) ```mortal(A) :- human(A)```�́AA��human�Ȃ�΁AA��mortal�ł���Ƃ����K��
-	- P => Q (P�Ȃ��Q)�� Q :- P
+- 規則
+	- 帰結 :- 条件 
+	- ex) ```mortal(A) :- human(A)```は、Aがhumanならば、Aはmortalであるという規則
+	- P => Q (PならばQ)は Q :- P
 
-�ȉ��͈�A�̗���<br>
+以下は一連の流れ<br>
 
-human.pl��ǂݍ��ݍς݁B(�������)
+human.plを読み込み済み。(公式より)
 
 ``` prolog:human.pl
 human(yamamoto).
 mortal(A) :- human(A).
 ```
 
-�����ɑ΂��Ď��₷��
+処理に対して質問する
 
 ```prolog
-?- human(yamamoto). /* ���[�U�[����̓���(����) */
-true. /* ��������̏o�� */
+?- human(yamamoto). /* ユーザーからの入力(質問) */
+true. /* 処理からの出力 */
 
 ?- mortal(yamamoto).
 true.
@@ -108,65 +108,65 @@ A = yamamoto.
 
 ```
 
-### 2.2 �P�ꉻ
+### 2.2 単一化
 
-- �ϐ��ɑ�����鑀��B�^���l�ł͂Ȃ����Ƃɒ���
+- 変数に代入する操作。真理値ではないことに注意
 	- ex) P(X,b) = P(X,Y) ---> X=a, Y=b ---> P(a,b)
 	- ex) P(X,X) = p(Y,Z) ---> Y=X, Z=X ---> P(X,X)
 	- ex) P(X,f(X,b)) = P(a,Y) ---> X=a,Y=f(a,b) ---> P(a,f(a,b))
 
 
-### 2.3 �g�p�\linux�̃R�}���h��
+### 2.3 使用可能linuxのコマンド例
 
 - pwd
 - ls
-- make(�X�V)
+- make(更新)
 
 
-### 2.4 Prolog�̊�{�̊�{
+### 2.4 Prologの基本の基本
 
-- �s�̏I���ɂ� ``` . ``` �s���I�h��Y��Ȃ��B
+- 行の終末には ``` . ``` ピリオドを忘れない。
 
-- ``` ?- ```�ȍ~�̓��͎͂���
-	- human(yamamoto)�́Ahuman(yamamoto)�̐^or�U������ 
+- ``` ?- ```以降の入力は質問
+	- human(yamamoto)は、human(yamamoto)の真or偽を質問 
 
-- ```/ * �u���b�N�R�����g�A�E�g�ł� * /``` ```% ��s�R�����g�A�E�g�ł�```
+- ```/ * ブロックコメントアウトです * /``` ```% 一行コメントアウトです```
 
-- ```halt```�����I��
+- ```halt```強制終了
 
-- �啶���A���t�@�x�b�g�͕ϐ�
+- 大文字アルファベットは変数
 
--�@```" "```�͕����R�[�h��������(�኱��₱��������g�������Ȃ�)
+-　```" "```は文字コードか文字列(若干ややこしいから使いたくない)
 
-- �f�o�b�O ```trace``` �f�o�b�O���� ```notrace```
+- デバッグ ```trace``` デバッグ解除 ```notrace```
 
-### 2.5 �L�[�{�[�h����
+### 2.5 キーボード入力
 
 ```prolog
 ?- read(X).
-|: test. % ���[�U�[�̓���
+|: test. % ユーザーの入力
 X = test.
 ```
 
 
-### 2.6 *.pl�t�@�C���̓ǂݍ���
+### 2.6 *.plファイルの読み込み
 
-- ��ԍ��ɂ���```File```���ڂ�```Consult```��I���B*.pl�t�@�C�����ǂݍ��܂��ƁA�ΐF(default)�̃R���p�C�����b�Z�[�W���o�͂����B
+- 一番左にある```File```項目の```Consult```を選択。*.plファイルが読み込まれると、緑色(default)のコンパイルメッセージが出力される。
 
 ![select_consult]
 
-���������```true.```<br>
-���s�����```ERROR: source_sink `likes' does not exist```
+成功すると```true.```<br>
+失敗すると```ERROR: source_sink `likes' does not exist```
 
-- �������́A``` consult('*.pl').```
+- もしくは、``` consult('*.pl').```
 
 
 ![loading_pl]
 
 
-### 2.7 �R���\�[���Ń��[���̍쐬
+### 2.7 コンソールでルールの作成
 
-�u���[���vhello�Ɠ��͂�����AHello world���o�́B
+「ルール」helloと入力したら、Hello worldを出力。
 
 ``` prolog
 |: [user].
@@ -178,35 +178,35 @@ Hello world
 true.
 ```
 
-### 2.8 �A��
+### 2.8 連語
 
-- �u���v�́A```,``` �Łu�܂��́v�́A```;````
-	- ex) Q,R���Ƃ��ɐ^�Ȃ��P�͐^�ł��� ---> P(A,B) :- Q(A),R(B).
-	- ex) A����(B�܂���C)�Ȃ��D ---> D :- A,(B;C).
-	- ex) (A�܂���B)�Ȃ��C ---> C :- A;B.
+- 「かつ」は、```,``` で「または」は、```;````
+	- ex) Q,Rがともに真ならばPは真である ---> P(A,B) :- Q(A),R(B).
+	- ex) Aかつ(BまたはC)ならばD ---> D :- A,(B;C).
+	- ex) (AまたはB)ならばC ---> C :- A;B.
 
 
-- ```rengo.pl```�́A�ȉ��̏����Ɋ�Â��B
-	- (����) �l�Ԃ̎R�{�ƍa���A���̃|�`�E�n�`�E�E���L�`������
-	- (����) �����̎R�{�ȊO�͗Y�ł���
-	- (�K��) �j���͌������邱�Ƃ��ł���
-	- (�K��) �l�Ԃ���������������
+- ```rengo.pl```は、以下の条件に基づく。
+	- (事実) 人間の山本と溝渕、犬のポチ・ハチ・ウメキチがいる
+	- (事実) 女性の山本以外は雄である
+	- (規則) 男女は結婚することができる
+	- (規則) 人間も犬も寿命がある
 
 
 ```prolog:rengo.pl
 
-% ---- ���� -----
+% ---- 事実 -----
 
-% �l��
+% 人間
 human(yamamoto).
 human(mizobuchi).
 
-% ��
+% 犬
 dog(pochi).
 dog(hachi).
 dog(umekichi).
 
-% ����
+% 性別
 male(mizobuchi)
 male(pochi).
 male(hachi).
@@ -214,47 +214,47 @@ male(umekichi).
 
 female(yamamoto).
 
-% ---- �K�� -----
+% ---- 規則 -----
 
-% �A��\��
-% ����
+% 連語表現
+% 結婚
 marriageable(A,B) :- male(A),female(B).
 marriageable(A,B) :- male(B),female(A).
 
-% ����
+% 寿命
 martal(A) :- human(A).
 martal(A) :- dog(A).
 ```
 
-### 2.9 �ے�
+### 2.9 否定
 
-- ```rengo.pl```�́A�ȉ��̏����Ɋ�Â��B
-	- (����) �l�Ԃ̎R�{�ƌ��̃|�`�E�n�`�E�E���L�`������
-	- (����) �����̎R�{�ȊO�͗Y�ł���
-	- (�K��) �����͎���ł��Ȃ��Ȃ�Ύ���������
+- ```rengo.pl```は、以下の条件に基づく。
+	- (事実) 人間の山本と犬のポチ・ハチ・ウメキチがいる
+	- (事実) 女性の山本以外は雄である
+	- (規則) 動物は死んでいないならば寿命がある
 
 
 ```prolog:not.pl
-% ---- ���� -----
+% ---- 事実 -----
 
-% �l��
+% 人間
 human(yamamoto).
 
-% ��
+% 犬
 dog(pochi).
 dog(hachi).
 dog(umekichi).
 
-% ����
+% 性別
 male(pochi).
 male(hachi).
 male(umekichi).
 
 female(yamamoto).
 
-% ---- �K�� -----
-% �ے�\��
-% ����
+% ---- 規則 -----
+% 否定表現
+% 寿命
 mortal(A) :- animal(A), not(deceased(A)).
 ```
 
@@ -263,11 +263,11 @@ mortal(A) :- animal(A), not(deceased(A)).
 <a id="ID_3"></a>
 
 
-## 3. �R���\�[������
+## 3. コンソール操作
 
-- �t�@�C���ł͂Ȃ����ڃR���\�[���Ŏ����Ƃ��́A```[user].```���W���[�����`����B
+- ファイルではなく直接コンソールで試すときは、```[user].```モジュールを定義する。
 
-like.pl��ǂݍ��ݍς݁B(�������)
+like.plを読み込み済み。(公式より)
 
 ``` prolog:like.pl
 %% Demo coming from http://clwww.essex.ac.uk/course/LG519/2-facts/index_18.html
@@ -313,14 +313,14 @@ chinese(chop_suey).
 chinese(sweet_and_sour).
 ```
 
-����```likes(sam,X)```����͂�Enter��������
+質問```likes(sam,X)```を入力しEnterを押すと
 ```prolog
 ?- likes(sam,X).
 X = dahl 
 ```
 
-```X = dahl```�̌�ɁA���͑҂���ԂɂȂ�̂�
-���[���ɑ΂��āA���₷��Ƃ��́A```;```
+```X = dahl```の後に、入力待ち状態になるので
+ルールに対して、質問するときは、```;```
 
 ```prolog
 ?- likes(sam,X).
@@ -333,14 +333,14 @@ X = sweet_and_sour ;
 X = pizza ;
 ```
 
-����ȏ�񓚂�����Ȃ��Ƃ��́A```Enter```
+それ以上回答がいらないときは、```Enter```
 
 ``` prolog
 ?- likes(sam,X).
 X = dahl .
 ```
 
-### 3.1 ���
+### 3.1 候補
 
 ``` prolog
 ?- listing(mild).
@@ -355,35 +355,35 @@ true.
 
 <a id="ID_4"></a>
 
-## 4. �t�@�C������
+## 4. ファイル操作
 
-### 4.1 �t�@�C���o��
+### 4.1 ファイル読み込み
 
-### 4.2 �t�@�C���̏�������
+- ``` swipl *.pl ```
 
-### 4.3 ��ƃf�B���N�g��(�o���Ȃ�����)
+### 4.2 作業ディレクトリ(出来なかった)
 
 - ``` working_directory(A).```
 
-### 4.4 �f�B���N�g���ύX(�o���Ȃ�����)
+### 4.3 ディレクトリ変更(出来なかった)
 
 - ``` working_directory((A,'c:/Users/test').```
 
-### 4.5 �\�[�X�t�@�C���̕���
+### 4.4 ソースファイルの分割
 
 - ``` :- multifile(test1/4).```
-- �Ō�ɓǂݍ��܂ꂽ�t�@�C���̒�`�݂̂��L���ɂȂ�Ȃ��悤�ɂ���(��`�̏㏑���ۑ���h��)
+- 最後に読み込まれたファイルの定義のみが有効にならないようにする(定義の上書き保存を防ぐ)
 
-### 4.6 �t�@�C���ւ̏o��
+### 4.4 ファイルへの出力
 
 - ```tell("test.txt"). true.```
 
 
-### 4.7 �� *pl�t�@�C���̓ǂݍ���
+### 4.5 別 *plファイルの読み込み
 
-- ```include```�œǂݍ���
+- ```include```で読み込む
 
-- ex) ```include1.pl```��```include2.pl```��```include12.pl```�œǂݍ��ށB
+- ex) ```include1.pl```と```include2.pl```を```include12.pl```で読み込む。
 
 ```prolog:include1.pl
 wa(N1,N2,Ans) :- var(N1), N1 is Ans - N2,!.
@@ -401,7 +401,7 @@ wa(N1,N2,Ans) :- var(Ans), Ans is N1 * N2.
 :- encodeing(utf8).
 :- module(md1,[wa/3,seki/3]).
 
-% ��*pl�t�@�C���̓ǂݍ���
+% 別*plファイルの読み込み
 :- include('include1.pl').
 :- include('include2.pl').
 ```
@@ -410,50 +410,50 @@ wa(N1,N2,Ans) :- var(Ans), Ans is N1 * N2.
 
 <a id="ID_5"></a>
 
-## 5. ���X�g
+## 5. リスト
 
-- �����̗v�f���������ׂ邽�߂̉ϒ��̃f�[�^�\��
-	- ex) yamamoto, mizobuchi, sasaki���܂ރ��X�g ---> [yamamoto,mizobuhi,sasaki] (python�ƈꏏ�B)
-	- ex) ��d���X�g���ł��� ---> [yamamoto,mizobuchi,[kaoru,tomoya],sasaki]
-	- ex) �󃊃X�g ---> []
-	- ex) ���X�g�̘A���\���H�H ---> [yamamoto|mizobuchi] = [kaoru,tomoya,yuki]. yamamoto = kaoru, mizobuchi = [tomoya,yuki]
+- 複数の要素を書き並べるための可変長のデータ構造
+	- ex) yamamoto, mizobuchi, sasakiを含むリスト ---> [yamamoto,mizobuhi,sasaki] (pythonと一緒。)
+	- ex) 二重リストもできる ---> [yamamoto,mizobuchi,[kaoru,tomoya],sasaki]
+	- ex) 空リスト ---> []
+	- ex) リストの連結構造？？ ---> [yamamoto|mizobuchi] = [kaoru,tomoya,yuki]. yamamoto = kaoru, mizobuchi = [tomoya,yuki]
 
-�ȉ��Alist�̒�`�B
+以下、listの定義。
 
 ```prolog:list.pl
-% �󃊃X�g
+% 空リスト
 list([]).
-% L�����X�g�̎�L�̐擪�ɔC�ӂ̗v�f�����������̂̓��X�g�ł���
+% Lがリストの時Lの先頭に任意の要素を加えたものはリストである
 list([_|L]) :- list(L).
 ```
 
 
-### 5.1 ���X�g�̒P�ꉻ
+### 5.1 リストの単一化
 
-- [X,Y]��[a,b] ---> X=a,Y=b
+- [X,Y]と[a,b] ---> X=a,Y=b
 
-- [X|Y]��[a,b,c] ---> X=a,Y=[b,c]
-	- [a|X] ---> �擪�̗v�f��a�Ŏc�肪X�ł���悤�ȃ��X�g
-	- [a,b|X] ---> �擪����a,b�ƕ��сA�c�肪X�ł���悤�ȃ��X�g
-	- ������ [a|b,Y] ---> �p�C�v�̉E��2�ȏ�̗v�f����ׂ邱�Ƃ͂ł��Ȃ�
-	- ������ [a|X] ---> a�͗v�f��X�̓��X�g
+- [X|Y]と[a,b,c] ---> X=a,Y=[b,c]
+	- [a|X] ---> 先頭の要素がaで残りがXであるようなリスト
+	- [a,b|X] ---> 先頭からa,bと並び、残りがXであるようなリスト
+	- ※注意 [a|b,Y] ---> パイプの右に2つ以上の要素を並べることはできない
+	- ※注意 [a|X] ---> aは要素でXはリスト
 
-- [a,b|X]��[a,b] ---> X=[],[a,b]
+- [a,b|X]と[a,b] ---> X=[],[a,b]
 
 
 ### 5.2 append
 ```append(List1,List2,List1 and List2)```
 
-- �A��
+- 連結
 	- ex) append([1,2,3],[4,5,6],X). ---> X = [1,2,3,4,5,6]
-- �����擾
+- 末尾取得
 	- ex) append([1,2,3],X,[1,2,3,4,5]). ---> X = [4,5]
-- �O�擾
+- 前取得
 	- ex) append(X,[3,4,5],[1,2,3,4,5]) ---> X = [1,2]
 
 
 
-�ȉ��Aappend���悭�킩��Ȃ������̂ŁAappend��V�ѓ|�����T�C�g(http://basicwerk.com/blog/archives/1637)��V�ѓ|�����B
+以下、appendがよくわからなかったので、appendを遊び倒したサイト(http://basicwerk.com/blog/archives/1637)を遊び倒した。
 
 
 ```prolog:append3.pl
@@ -474,19 +474,19 @@ Y = [].
 false.
 
 
-% --- �ȉ����܂藝���ł��Ă��Ȃ�
+% --- 以下あまり理解できていない
 
 
-% j���A�g���Ȃ̂ł������Ȃ�
+% jがアトムなのでくっつかない
 ?- append(j,[m,t],L).
 false.
 
-% ����������
+% 正しい動作
 ?- append([j],[m,t],L).
 L=[j,m,t].
 
 
-% --- �ȉ�CAR��CDR�̗� ---
+% --- 以下CARとCDRの例 ---
 
 ?- append(X,Y,[8,9|12]).
 X=[],
@@ -511,42 +511,42 @@ Y=[9,12].
 
 
 ### 5.3 sort
-- ���X�g�̗v�f�𐮗�
+- リストの要素を整列
 
 
 ***
 
 <a id="ID_6"></a>
 
-## 6. ����
+## 6. 数式
 
-- ������```is```���g��
-- is(�ϐ�,�v�Z��) ---> A is 1+2. �~ 3 is A+2
+- 数式は```is```を使う
+- is(変数,計算式) ---> A is 1+2. × 3 is A+2
 
 ![math_is]
 
 
-### 6.1 �ϐ�
+### 6.1 変数
 
-- �P�ꉻ�ɗp���� ---> �p�啶���Ŏn�܂�L���� A or �A���_�[�o�[�Ŏn�܂�L���� _variable
+- 単一化に用いる ---> 英大文字で始まる記号列 A or アンダーバーで始まる記号列 _variable
 
 
-### 6.2 ���쉉�Z�q(�悭�킩���ĂȂ�)
+### 6.2 自作演算子(よくわかってない)
 
-- ```op(�����̋���,�����̕���,���Z�q�̃V���{��)```�ŁA���[�U�[�Ǝ��ɉ��Z�q���`�ł���B
+- ```op(結合の強さ,結合の方向,演算子のシンボル)```で、ユーザー独自に演算子を定義できる。
 	- ex) op(500,yfx,plus). ?- A = 1 plus 2. ---> A = 1 plus 2.
 
-### 6.3 ��r���Z�q
+### 6.3 比較演算子
 
-- ������ ---> ==
-- ���������l ---> =:=
+- 等しい ---> ==
+- 等しい数値 ---> =:=
 	- ex) 2 =:= 1+1. true.
-- �قȂ鐔�l ---> =\=
+- 異なる数値 ---> =\=
 	- ex) 12 =\= 24. true.
 	
-- �قȂ鎮 ---> \==
+- 異なる式 ---> \==
 	- ex) a \== b. true.
-- �s���� ---> <,>,=<,>=
+- 不等号 ---> <,>,=<,>=
 
 
 ***
@@ -558,7 +558,14 @@ Y=[9,12].
 
 Syntax error: Unexpected end of file
 
-- ���� �\���̌��� . �t���Y��
+- 原因 構文の後ろに . 付け忘れ
 
 
+***
 
+<a id="ID_7"></a>
+
+## 7. 辞書
+
+- make:
+	- ファイルの上書き保存
